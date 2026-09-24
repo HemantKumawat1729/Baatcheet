@@ -12,7 +12,7 @@ import { connectDB } from './lib/db.js';
 import User from './models/user.js';
 import job from './lib/cron.js';
 
-import clercWebhook from './webhooks/clerk.webhook.js'
+import clerckWebhook from './webhooks/clerk.webhook.js'
 
 const app=express();
 
