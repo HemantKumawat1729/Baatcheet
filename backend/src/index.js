@@ -10,6 +10,7 @@ import {clerkMiddleware} from '@clerk/express'
 
 import { connectDB } from './lib/db.js';
 import User from './models/user.js';
+import job from './lib/cron.js';
 
 const app=express();
 
