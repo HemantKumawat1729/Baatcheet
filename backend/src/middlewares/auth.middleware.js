@@ -1,5 +1,5 @@
 import { getAuth } from "@clerk/express";
-import User from "../models/user";
+import User from "../models/user.js";
 
 export async function protectRoute(req,res,next){
   try{
