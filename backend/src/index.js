@@ -12,12 +12,17 @@ import { connectDB } from './lib/db.js';
 import User from './models/user.js';
 import job from './lib/cron.js';
 
+import clercWebhook from './webhooks/clerk.webhook.js'
+
 const app=express();
 
 const PORT=process.env.PORT;
 const FRONTEND_URL=process.env.FRONTEND_URL;
 
 const publicDir=path.join(process.cwd(),"public");
+
+app.use('/api/webhooks/clerk',express.raw({ type:"application/json" }),clerkWebhook);
+// reads the request body as raw bytes (Buffer) instead of converting JSON into a JavaScript object.
 
 app.use(express.json());
 app.use(cors({origin:FRONTEND_URL,credentials:true}));
