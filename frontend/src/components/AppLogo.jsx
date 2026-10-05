@@ -1,4 +1,4 @@
-export const APP_NAME = "Baatcheet";
+export const APP_NAME = "Whispr";
 
 export function AppLogo({ className = "", size = 32, alt = APP_NAME }) {
   return (
