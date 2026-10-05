@@ -2,7 +2,7 @@ import User from '../models/user.js';
 import Message from '../models/message.js'
 import { hasImageKitConfig, uploadChatMedia } from '../lib/imagekit.js';
 
-import {getReceiverSocketId} from '../lib/socket.js'
+import { io, getReceiverSocketId } from '../lib/socket.js';
 
 export async function getUsersForSideBar(req,res){
 
@@ -73,7 +73,7 @@ export async function sendMessage(req,res){
   try {
     const {text}=req.body;
     const {id:receiverId}=req.params;
-    const senderId=req.user_id;
+    const senderId=req.user._id;
 
     let imageUrl;
     let videoUrl;
@@ -101,7 +101,7 @@ export async function sendMessage(req,res){
 
     const receiverSocketId=getReceiverSocketId(receiverId);
     //only send the message in realtime if user is online
-    if(receiverId){
+    if(receiverSocketId){
       io.to(receiverSocketId).emit("newMessage",newMessage);
     }
 
